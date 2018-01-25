@@ -4,7 +4,8 @@
   "description": "Library to make possible the use of Django REST Framework with Backbone Framework",
   "main": "lib/djangorest-backbone.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cp lib/djangorest-backbone.js build/djangorest-backbone.js && uglifyjs lib/djangorest-backbone.js --mangle --output build/djangorest-backbone.min.js --source-map build/djangorest-backbone.min.map"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,13 @@
     "REST",
     "django-rest-framework"
   ],
-  "author": "Leandro Moreno",
+  "author": "Leandro Moreno moreno.leandro.g@gmail.com",
   "license": "MIT",
   "dependencies": {
     "backbone": "^1.2.1"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.4.21"
   },
   "bugs": {
     "url": "https://github.com/letoss/djangorest-backbone/issues"
