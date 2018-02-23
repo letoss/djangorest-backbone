@@ -1,11 +1,11 @@
 {
   "name": "djangorest-backbone",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Library to make possible the use of Django REST Framework with Backbone Framework",
   "main": "lib/djangorest-backbone.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp lib/djangorest-backbone.js build/djangorest-backbone.js && uglifyjs lib/djangorest-backbone.js --mangle --output build/djangorest-backbone.min.js --source-map build/djangorest-backbone.min.map"
+    "build": "cp lib/djangorest-backbone.js build/djangorest-backbone.js && uglifyjs lib/djangorest-backbone.js --mangle --output build/djangorest-backbone.min.js --source-map build/djangorest-backbone.min.map && cp lib/djangorest-backbone.extensions.js build/djangorest-backbone.extensions.js && uglifyjs lib/djangorest-backbone.extensions.js --mangle --output build/djangorest-backbone.extensions.min.js --source-map build/djangorest-backbone.extensions.min.map"
   },
   "repository": {
     "type": "git",

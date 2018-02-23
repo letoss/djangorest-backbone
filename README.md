@@ -16,3 +16,12 @@ Also add two methods for pagination:
 
 * CollectionInstance.getPreviousPage
 * CollectionInstance.getNextPage
+
+## New stuff
+
+A new use option has arrived. There is a case where maybe a dev doesn't want to overwrite the default
+Backbone prototype. For this case, a new Collection has been created. It will extend from Backbone.Collection
+and it will be available from Backbone. So, now you can use Backbone.DRF.Collection and that's it.
+
+**Important**: Using this Collection won't overwrite the backbone sync method. So, csrf django token won't
+be handled by this library.
