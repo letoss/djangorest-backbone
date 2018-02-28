@@ -1,6 +1,6 @@
 {
   "name": "djangorest-backbone",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Library to make possible the use of Django REST Framework with Backbone Framework",
   "main": "lib/djangorest-backbone.js",
   "scripts": {
@@ -17,12 +17,16 @@
     "django-rest",
     "rest_framework",
     "REST",
-    "django-rest-framework"
+    "django-rest-framework",
+    "DRF",
+    "drf",
+    "marionette"
   ],
   "author": "Leandro Moreno moreno.leandro.g@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "backbone": "^1.2.1"
+    "backbone": "^1.2.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "uglify-js": "^2.4.21"
