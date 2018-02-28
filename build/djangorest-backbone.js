@@ -25,27 +25,21 @@ define(function (require) {
     * Method to retrieve the next page in the pagination and maintain the other filters.
     */
     Backbone.Collection.prototype.getNextPage = function () {
-        if (this.next) {
-            var successful = function () {
-                return true;
-            };
-            var filters = this.next.split('?')[1];
-            Backbone.listenTo(this, 'sync', successful);
-            this.fetch({data: filters});
-        }
+        if (!this.next) {
+                return null;
+            }
+        var filters = this.next.split('?')[1];
+        return this.fetch({data: filters});
     };
 
     /**
     * Method to retrieve the previous page in the pagination and maintain the other filters.
     */
     Backbone.Collection.prototype.getPreviousPage = function () {
-        if (this.previous) {
-            var successful = function () {
-                return true;
-            };
-            var filters = this.next.split('?')[1];
-            Backbone.listenTo(this, 'sync', successful);
-            this.fetch({data: filters});
-        }
+        if (!this.previous) {
+                return null;
+            }
+        var filters = this.previous.split('?')[1];
+        return this.fetch({data: filters});
     };
 });
