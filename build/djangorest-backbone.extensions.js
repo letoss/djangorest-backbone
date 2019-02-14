@@ -34,7 +34,7 @@ define(function (require) {
             return data && data.results || data;
         },
 
-        getNextPage: function () {
+        getNextPage: function (options) {
             /**
             *  Method to retrieve the next page in the pagination
             *  and maintain the other filters.
@@ -42,11 +42,14 @@ define(function (require) {
             if (!this.next) {
                 return null;
             }
+
+            var opts = options || {};
             var filters = this.next.split('?')[1];
-            return this.fetch({data: filters});
+            opts.data = filters;
+            return this.fetch(opts);
         },
 
-        getPreviousPage: function () {
+        getPreviousPage: function (options) {
             /**
             *  Method to retrieve the previous page in the
             *  pagination and maintain the other filters.
@@ -54,8 +57,10 @@ define(function (require) {
             if (!this.previous) {
                 return null;
             }
+            var opts = options || {};
             var filters = this.previous.split('?')[1];
-            return this.fetch({data: filters});
+            opts.data = filters;
+            return this.fetch(opts);
         }
     });
 
