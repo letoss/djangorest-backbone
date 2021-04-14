@@ -1,6 +1,6 @@
 {
   "name": "djangorest-backbone",
-  "version": "0.1.9",
+  "version": "1.0.1",
   "description": "Library to make possible the use of Django REST Framework with Backbone Framework",
   "main": "lib/djangorest-backbone.js",
   "scripts": {
