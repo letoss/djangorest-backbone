@@ -10,6 +10,33 @@ define(function (require) {
     Backbone.DRF.Model = Backbone.Model.extend({
         idAttribute: Backbone.DRF.idAttribute,
 
+        genericRelationField: '',
+        genericRelationMapping: {},
+
+        parse: function (data, options) {
+            /**
+             * Check if there is a generic related field defined. If that's
+             * the case, insert the related field ID as a new model attribute.
+             */
+            if (!_.isEmpty(this.genericRelationField)) {
+                var relatedField = data[this.genericRelationField];
+                if (!_.isUndefined(relatedField)) {
+                    relatedField = addSlash(relatedField);
+                    var keyAndValue = getKeyAndValue(relatedField);
+
+                    // Check if there is a mapping defined at model level.
+                    // Use the one defined there if it's defined. Use the last
+                    // part of the URL path otherwise.
+                    var fieldName = !_.isEmpty(this.genericRelationMapping)
+                        ? this.genericRelationMapping[keyAndValue.key]
+                        : keyAndValue.key;
+                    // value = id.
+                    data[fieldName] = keyAndValue.value;
+                }
+            }
+            return data;
+        },
+
         url: function () {
             // Models should define urlRoot. if that is not the case,
             // this method will try to get the base URL from the collection.
@@ -68,5 +95,20 @@ define(function (require) {
 
     var addSlash = function (str) {
         return str + ((str.length > 0 && str.charAt(str.length - 1) === '/') ? '' : '/');
+    };
+
+    var getKeyAndValue = function (url) {
+        var values = url.split('/');
+        // Pop the last item since it's an empty string.
+        values.pop();
+        // The last value is the URL ID.
+        var value = values.pop();
+        // The last part of the URL path.
+        var key = values.pop();
+        return {
+            key: key,
+            value: value,
+
+        };
     };
 });
