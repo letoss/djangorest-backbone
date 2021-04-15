@@ -37,6 +37,24 @@ define(function (require) {
             return data;
         },
 
+        save: function (data) {
+            if (!_.isEmpty(this.genericRelationField)) {
+                // Remove from the model fields the inserted field.
+                var relatedField = this.get(this.genericRelationField);
+                relatedField = addSlash(relatedField);
+
+                var keyAndValue = getKeyAndValue(relatedField);
+
+                var fieldName = !_.isEmpty(this.genericRelationMapping)
+                    ? this.genericRelationMapping[keyAndValue.key]
+                    : keyAndValue.key;
+
+                delete this.attributes[fieldName];
+            }
+
+            return Backbone.Model.prototype.save.call(this, data);
+        },
+
         url: function () {
             // Models should define urlRoot. if that is not the case,
             // this method will try to get the base URL from the collection.
