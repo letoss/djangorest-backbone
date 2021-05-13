@@ -37,7 +37,7 @@ define(function (require) {
             return Backbone.Model.prototype.parse.call(this, data, options);
         },
 
-        save: function (data) {
+        save: function (data, options) {
             if (!_.isEmpty(this.genericRelationField)) {
                 // Remove from the model fields the inserted field.
                 var relatedField = this.get(this.genericRelationField);
